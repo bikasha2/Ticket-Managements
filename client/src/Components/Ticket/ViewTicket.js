@@ -24,8 +24,15 @@ function ViewTicket() {
 
     const logout = (e) => {
         e.preventDefault()
-          // localStorage.clear('user');
+          localStorage.clear('token');
         history.push('/')
+    }
+
+    function getData(token, config) {
+        axios.get("http://localhost:3002/api/tickets", config)
+        .then(function (response) {
+            setData(response.data)
+        })
     }
 
 
@@ -41,9 +48,10 @@ function ViewTicket() {
             }
         }
         // Request Body
-        axios.get(`http://localhost:3002/api/ticket/${id}`, config)
+        axios.delete(`http://localhost:3002/api/ticket/${id}`, config)
             .then(function (response) {
-                setData(response.data)
+                console.log(response)
+                getData(userToken, config)
             })
     }
 
@@ -60,10 +68,7 @@ function ViewTicket() {
             }
         }
         // Request Body
-        axios.get("http://localhost:3002/api/tickets", config)
-            .then(function (response) {
-                setData(response.data)
-            })
+       getData(token, config)
     }, [location]);
 
 

@@ -16,20 +16,24 @@ function Dashboard() {
     const [email, setEmail] = useState("");
     const [description, setDescription] = useState("");
 
+
     const showToastMessage = () => {
-        toast.success('',{
+        toast.success('Ticket has been created successfully !',{
+            position: toast.POSITION.TOP_RIGHT
+        });
+    };
+    const errorToastMessage = () => {
+        toast.error('Ticket has been created unsuccessfully !',{
             position: toast.POSITION.TOP_RIGHT
         });
     };
 
     const history = useHistory()
 
+  
 
-
-    function handleSumbit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-        console.log("hitted the button");
-        console.log(email, description)
         const body = {
             email: email,
             description: description
@@ -42,13 +46,19 @@ function Dashboard() {
         // Request Body
         axios.post("http://localhost:3002/api/tickets", body, config)
             .then(function (response) {
-                console.log(response);
-                showToastMessage()
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 1000)
+                if(response.status === 200) {
+                    console.log(response);
+                    setEmail("");
+                    setDescription("");
+                    showToastMessage();
+                }
                
+               
+            }).catch((err) => {
+                errorToastMessage();
             })
+        
+       
 
     }
 
@@ -82,9 +92,9 @@ function Dashboard() {
             <FormControl  sx={{border: '1px solid gray', paddingTop: '20px', paddingLeft: '50px', paddingBottom: '15px', paddingRight: '50px'}}>
     
             Email: <TextField fullWidth onChange={(newValue) => setEmail(newValue.target.value)}  label={'Please enter your Email'} id="email" margin="normal" />
-            Description: <TextField fullWidth onChange={(newValue) => setDescription(newValue.target.value)} label={'Please enter your Password'} id="Password" margin="normal" />
+            Description: <TextField fullWidth onChange={(newValue) => setDescription(newValue.target.value)} label={'Please enter your Description'} id="Description" margin="normal" />
            
-            <Button onClick={e => handleSumbit(e)} variant="contained" color="success" sx={{marginTop: '15px', display: 'flex', justifyContent: 'center'}}>
+            <Button onClick={e => handleSubmit(e)} variant="contained" color="success" sx={{marginTop: '15px', display: 'flex', justifyContent: 'center'}}>
                 Submit
             </Button>
             <ToastContainer />

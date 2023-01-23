@@ -9,6 +9,7 @@ import './App.css';
 
 
 function App() {
+  const token = window.localStorage.getItem('token')
   return (
     <>
       <Router>
@@ -16,7 +17,10 @@ function App() {
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/tickets" component={ViewTicket} />
+          {
+            token ? <Route exact path="/tickets" component={ViewTicket} /> :  <Route exact path="/" component={Login} />
+          }
+          
         
         </Switch>
       </Router>

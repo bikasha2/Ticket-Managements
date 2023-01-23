@@ -22,13 +22,13 @@ function Register() {
 
     const successToastMessage = (response) => {
         console.log(response)
-        toast.success('',{
+        toast.success('Registration successfully !',{
             position: toast.POSITION.TOP_RIGHT
         });
     };
     const errorToastMessage = (error) => {
         console.log(error)
-        toast.success('',{
+        toast.error('Registeration unsuccessfuly !',{
             position: toast.POSITION.TOP_RIGHT
         });
     };
@@ -54,16 +54,23 @@ function Register() {
             .then(function (response) {
                 console.log(response);
                 successToastMessage(response)
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 1000)
+                setFirstName("")
+                setLastName("")
+                setEmail("")
+                setPassword("")
+                setConfirmPassword("")
+                setRole("")
                
             })
             .catch((error) =>{
                 errorToastMessage(error)
-                setTimeout(() => {
-                    window.location.reload(false);
-                }, 1000)
+                setFirstName("")
+                setLastName("")
+                setEmail("")
+                setPassword("")
+                setConfirmPassword("")
+                setRole("")
+               
             })
     }
           
