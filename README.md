@@ -14,6 +14,10 @@ Step2: npm start
 
 # The project consists of tech stack with Express JS, Node JS, Mongo db, React, Material UI where there are user who can register and login themselves inorder to view the tickets as the authorized users can only view the tickets and perform a delete operation. Furhter anyone can create the ticket by just providing the email and description of the ticket and finally clicking on the submit button to generate a new ticket.
 
+
+<img width="1440" alt="Screenshot 2023-01-23 at 12 04 34 PM" src="https://user-images.githubusercontent.com/121108969/213978869-d3c5d689-583b-478d-afdd-68f78391f128.png">
+
+
 <img width="1440" alt="Screenshot 2023-01-23 at 9 31 34 AM" src="https://user-images.githubusercontent.com/121108969/213964052-39c5539b-3d52-46f5-8d98-6efe0a0cb6e6.png">
 
 
